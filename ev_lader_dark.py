@@ -46,7 +46,7 @@ class EVApp:
             nu = datetime.now()
             eindtijd = nu + timedelta(seconds=totaal_seconden)
             
-            self.lbl_eindtijd.config(text=f"Verwacht klaar om: {eindtijd.strftime('%H:%M:%S')}")
+            self.lbl_eindtijd.config(text=f"Verwacht 100% geladen om: {eindtijd.strftime('%H:%M:%S')}")
             self.btn_start.config(state="disabled") # Voorkom dubbel klikken
 
             # Start updates in een aparte thread
