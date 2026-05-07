@@ -1,26 +1,32 @@
 name: Build Windows EXE
 
 on: 
-  workflow_dispatch: # Hiermee kun je het ook handmatig starten
+  workflow_dispatch: 
   push:
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4 # Geüpdatet naar v4
+
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5 # Geüpdatet naar v5
       with:
         python-version: '3.10'
+
     - name: Install dependencies
       run: |
+        python -m pip install --upgrade pip
         pip install pyinstaller plyer
+
     - name: Build EXE
       run: |
-        pyinstaller --noconsole --onefile --hidden-import plyer.platforms.win.notification ev_lader_dark.py
+        python -m PyInstaller --noconsole --onefile --hidden-import "plyer.platforms.win.notification" ev_lader_dark.py
+
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4 # DIT WAS DE FOUT: nu naar v4
       with:
         name: EV-Charger-Programma
         path: dist/ev_lader_dark.exe
+
