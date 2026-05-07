@@ -1,6 +1,8 @@
 name: Build Windows EXE
 
-on: [push]
+on: 
+  workflow_dispatch: # Hiermee kun je het ook handmatig starten
+  push:
 
 jobs:
   build:
